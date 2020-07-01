@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
-import { movieApi } from './AxiosStore.js'
-import { popularApi } from './AxiosStore.js'
+// import { movieApi } from './AxiosStore.js'
+// import { popularApi } from './AxiosStore.js'
 import router from '../router/index'
+import { STATES } from "mongoose"
 
 Vue.use(Vuex)
 
@@ -16,14 +17,18 @@ let api = Axios.create({
   withCredentials: true
 })
 
-
+const movieApi = Axios.create({
+  baseURL: "http://www.omdbapi.com/?apikey=8703badf&s=",
+  timeout: 3000
+})
 
 export default new Vuex.Store({
   state: {
     user: {},
     boards: [],
     activeBoard: {},
-    popularMovies: []
+    popularMovies: [],
+    searchResults: [],
   },
   mutations: {
     setUser(state, user) {
@@ -35,6 +40,14 @@ export default new Vuex.Store({
 
     setPopularMovies(state, movies){
       state.popularMovies = movies
+    },
+
+    searchMovies(state, movies) {
+      state.searchResults = [],
+      movies.forEach(m => {
+        state.searchResults.push(m)
+      })
+      console.log(state.searchResults)
     }
   },
   actions: {
@@ -57,21 +70,23 @@ export default new Vuex.Store({
 
 
    
-    async getPopularMovies({ commit, dispatch }) {
-      try {
-        let res = await popularApi.get("")
-        commit("setPopularMovies", res.data)
-      } catch (error) {
-        console.error(error)
-      }
+    // async getPopularMovies({ commit, dispatch }) {
+    //   try {
+    //     let res = await popularApi.get("")
+    //     commit("setPopularMovies", res.data)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
       
+    // },
+    async searchMovies({ commit, dispatch }, query) {
+      try {
+        let res = await movieApi.get(query)
+        commit("searchMovies", res.data.Search)
+      } catch (err) {
+        console.error(err)
+      }
     },
-    addBoard({ commit, dispatch }, boardData) {
-      api.post('boards', boardData)
-        .then(serverBoard => {
-          dispatch('getBoards')
-        })
-    }
   
   }
 })
