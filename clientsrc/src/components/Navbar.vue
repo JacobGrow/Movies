@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <router-link class="navbar-brand" :to="{ name: 'home' }"
       >Kanban</router-link
     >
@@ -69,4 +69,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+*{
+  font-family: 'Bangers', cursive;
+}
+</style>

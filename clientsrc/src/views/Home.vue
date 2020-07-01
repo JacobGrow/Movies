@@ -3,16 +3,18 @@
     <div class="container-fluid">
     <div class="row">
       <div class="col-12 text-center">
-        <div class="row justify-content-center">
-
-        <h1>Movies</h1>
+        <div class="row justify-content-center mt-2">
+        <h1>Search for Entertainment</h1>
     </div>
-    <form @submit.prevent="searchMovies">
-      <input type="text" v-model="searchApi" />
-      <button type="submit" @click="searchResults = true">Search</button>
+    <div class="row justify-content-center">
+      <div class="col-6">
+    <form @submit.prevent="searchMovies" class="form-inline justify-content-center">
+      <input type="text" v-model="searchApi" class="form-control shadow" style="width: 60%"/>
+      <button type="submit" @click="searchResults = true" class="btn btn-dark ml-2 shadow">Search</button>
     </form>
+      </div>
+    </div>
     <h2>
-      Results
     </h2>
         </div>
       <div class="row justify-content-center">
@@ -23,10 +25,10 @@
         <div v-for="movie in movies" :key="movie.id" class="mx-2">
           <div class="col text-center ">
 
-            <div class="card kard mt-5 text-center">
+            <div class="card card-color mt-5 pb-1 text-center">
 
 
-            <p class="text-dark resultOverflow">{{movie.Title}}</p>
+            <p class="text-light resultOverflow my-1">{{movie.Title}}</p>
 
 
        
@@ -79,6 +81,10 @@ export default {
 
 
 <style scoped>
+
+*{
+  font-family: 'Bangers', cursive;
+}
 .movie-size{
   height: 450px;
   width: 300px
@@ -91,8 +97,11 @@ export default {
     text-overflow: ellipsis;
   }
 
-/* .kard{
-  max-width: 400px;
-  max-height: 600px;
-} */
+.card-color{
+  background-color: #b3211c;
+}
+
+.home{
+overflow-x: hidden;
+}
 </style>
