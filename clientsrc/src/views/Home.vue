@@ -3,8 +3,9 @@
     <div class="container-fluid">
     <div class="row">
       <div class="col-12 text-center">
+        <div class="row justify-content-center">
+
         <h1>Movies</h1>
-      </div>
     </div>
     <form @submit.prevent="searchMovies">
       <input type="text" v-model="searchApi" />
@@ -13,24 +14,40 @@
     <h2>
       Results
     </h2>
+        </div>
       <div class="row justify-content-center">
-        <div v-for="movie in movies" :key="movie.id">
-          <div class="col-4 text-center">
-            <p>{{movie.Title}}</p>
+         
+          <div class="col-12 text-center">
+            <div class="row justify-content-center">
+
+        <div v-for="movie in movies" :key="movie.id" class="mx-2">
+          <div class="col text-center ">
+
+            <div class="card kard mt-5 text-center">
+
+
+            <p class="text-dark resultOverflow">{{movie.Title}}</p>
+
+
+       
           
-              <img :src="movie.Poster"/>  
+              <img :src="movie.Poster" class="movie-size align-self-center"/>  
           
+          </div>
+          </div>
+            </div>
+            
         </div>
       </div>
           </div>
    
-    </div>
 
     <div class="row">
       <!-- <popularMovies /> -->
     </div>
-    <div></div>
+      </div>
   </div>
+    </div>
 </template>
 
 
@@ -62,4 +79,20 @@ export default {
 
 
 <style scoped>
+.movie-size{
+  height: 450px;
+  width: 300px
+}
+
+.resultOverflow{
+    width: 20em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+/* .kard{
+  max-width: 400px;
+  max-height: 600px;
+} */
 </style>
