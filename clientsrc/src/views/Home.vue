@@ -3,11 +3,11 @@
     <div class="row">
     <h1>Movies</h1>
     </div>
-    <div class="row">
-        
-<movies v-for="popularMovie in popularMovies" :key="popularMovie" :popularMoviesProp ="popularMovie"/>
-   
-  </div>
+<div class="row">
+
+<popularMovies />
+</div>
+
   </div>
 </template>
 
@@ -21,12 +21,10 @@ export default {
     return {};
   },
   mounted() {
-    // this.$store.dispatch("getPopularMovies")
+  
   },
   computed: {
-    popularMovies(){
-      return this.$store.state.popularMovies;
-  },
+  
   },
   methods: {},
   components: {
