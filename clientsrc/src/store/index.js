@@ -25,8 +25,8 @@ const movieApi = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    boards: [],
-    activeBoard: {},
+    movies: [],
+    activeMovie: {},
     popularMovies: [],
     searchResults: [],
   },
@@ -34,10 +34,7 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user
     },
-    setBoards(state, boards) {
-      state.boards = boards
-    },
-
+  
     setPopularMovies(state, movies){
       state.popularMovies = movies
     },
@@ -49,7 +46,18 @@ export default new Vuex.Store({
         state.searchResults.push(m) }
       })
       console.log(state.searchResults)
+    },
+
+    setActiveMovie(state, id) {
+      let found = state.searchResults.filter(m => m.id == id).pop()
+      if(found){
+        state.activeMovie = found
+      } else {
+        let found2 = state.movies.filter(m=>m.id==id).pop()
+        state.activeMovie = found2
+      }
     }
+
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -67,7 +75,7 @@ export default new Vuex.Store({
         console.error(err)
       }
     },
-    //#endregion
+    
 
 
    
@@ -88,6 +96,10 @@ export default new Vuex.Store({
         console.error(err)
       }
     },
+
+    async getActiveMovie({ commit, dispatch }, movie){
+      commit("setActiveMovie", movie)
+    }
   
   }
 })

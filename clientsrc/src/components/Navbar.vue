@@ -24,9 +24,9 @@
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
-          :class="{ active: $route.name == 'boards' }"
+          :class="{  }"
         >
-          <router-link class="nav-link" :to="{ name: 'boards' }"
+          <router-link class="nav-link" :to="{ }"
             >My Proile</router-link
           >
         </li>

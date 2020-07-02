@@ -22,10 +22,11 @@
           <div class="col-12 text-center">
             <div class="row justify-content-center">
 
-        <div v-for="movie in movies" :key="movie.id" class="mx-2">
+        <div v-for="movie in movies" :key="movie.id" :movieProp="movie" class="mx-2">
           <div class="col text-center ">
 
             <div class="card card-color mt-5 pb-1 text-center shadow">
+               <router-link :to="{name: 'movieDetails', params: {movieId: movie.imdbID}}">
 
 
             <p class="text-light resultOverflow my-1">{{movie.Title}}</p>
@@ -34,7 +35,7 @@
        
           
               <img :src="movie.Poster" class="movie-size align-self-center"/>  
-          
+               </router-link>
           </div>
           </div>
             </div>
