@@ -49,11 +49,11 @@ export default new Vuex.Store({
     },
 
     setActiveMovie(state, id) {
-      let found = state.searchResults.filter(m => m.id == id).pop()
+      let found = state.searchResults.filter(m => m.imdbID == id).pop()
       if(found){
         state.activeMovie = found
       } else {
-        let found2 = state.movies.filter(m=>m.id==id).pop()
+        let found2 = state.movies.filter(m=>m.imdbID==id).pop()
         state.activeMovie = found2
       }
     }

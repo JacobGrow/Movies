@@ -22,8 +22,12 @@ export default {
   computed: {
     movie() {
       return this.$store.state.activeMovie;
+      console.log(this.activeMovie)
     }
   },
+  methods: {
+    
+  }
 
 }
 </script>
