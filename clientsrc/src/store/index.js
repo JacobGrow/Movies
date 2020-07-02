@@ -45,7 +45,8 @@ export default new Vuex.Store({
     searchMovies(state, movies) {
       state.searchResults = [],
       movies.forEach(m => {
-        state.searchResults.push(m)
+        if(m.Poster != "N/A"){
+        state.searchResults.push(m) }
       })
       console.log(state.searchResults)
     }

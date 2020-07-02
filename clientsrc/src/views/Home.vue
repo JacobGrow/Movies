@@ -25,7 +25,7 @@
         <div v-for="movie in movies" :key="movie.id" class="mx-2">
           <div class="col text-center ">
 
-            <div class="card card-color mt-5 pb-1 text-center">
+            <div class="card card-color mt-5 pb-1 text-center shadow">
 
 
             <p class="text-light resultOverflow my-1">{{movie.Title}}</p>
